@@ -1,0 +1,124 @@
+﻿{
+  "project": "College Manpower & HR Management System (JCT / מכון לב)",
+  "submitter_id": "329821532",
+  "version": "1.0",
+  "schemas": [
+    {
+      "schema_name": "Employee_Schema",
+      "target_table": "Employee",
+      "num_rows": 500,
+      "description": "Mockaroo configuration to generate 500 college employees (IDs 1-500)",
+      "columns": [
+        {
+          "name": "EmployeeID",
+          "type": "Row Number",
+          "formula": null
+        },
+        {
+          "name": "FirstName",
+          "type": "First Name",
+          "formula": null
+        },
+        {
+          "name": "LastName",
+          "type": "Last Name",
+          "formula": null
+        },
+        {
+          "name": "ID_Number",
+          "type": "Regular Expression",
+          "value": "0[2-9][0-9]{7}",
+          "formula": null
+        },
+        {
+          "name": "HireDate",
+          "type": "Date",
+          "min": "01/01/2012",
+          "max": "10/01/2026",
+          "format": "%Y-%m-%d"
+        },
+        {
+          "name": "BaseSalary",
+          "type": "Number",
+          "min": 8500.00,
+          "max": 42000.00,
+          "decimals": 2
+        },
+        {
+          "name": "DepartmentID",
+          "type": "Custom List",
+          "values": [
+            "101", "102", "103", "104", "105", "106",
+            "107", "108", "109", "110", "111", "112"
+          ]
+        },
+        {
+          "name": "EmployeeType",
+          "type": "Formula",
+          "formula": "if this <= 250 then 'Administrative' else 'Academic' end"
+        }
+      ]
+    },
+    {
+      "schema_name": "AdministrativeStaff_Schema",
+      "target_table": "AdministrativeStaff",
+      "num_rows": 250,
+      "description": "Mockaroo configuration for administrative staff (IDs 1-250)",
+      "columns": [
+        {
+          "name": "EmployeeID",
+          "type": "Row Number",
+          "formula": null
+        },
+        {
+          "name": "OfficeNumber",
+          "type": "Template",
+          "type": "Custom List",
+          "values": ["Lev-Rm101", "Lev-Rm210", "Shalom-Rm305", "Tech-Rm402", "Academic-Rm112", "Lev-Rm204", "Tech-Rm130", "Shalom-Rm15"]
+        },
+        {
+          "name": "ManagementLevel",
+          "type": "Custom List",
+          "values": ["Entry", "Junior", "Mid", "Senior", "Director", "Head of Administration"]
+        }
+      ]
+    },
+    {
+      "schema_name": "AcademicStaff_Schema",
+      "target_table": "AcademicStaff",
+      "num_rows": 250,
+      "description": "Mockaroo configuration for academic staff (IDs 251-500)",
+      "columns": [
+        {
+          "name": "EmployeeID",
+          "type": "Formula",
+          "formula": "this + 250"
+        },
+        {
+          "name": "ResearchField",
+          "type": "Custom List",
+          "values": [
+            "Algorithms & Artificial Intelligence",
+            "Quantum Computing & Information",
+            "Electro-Optics, Lasers & Photonics",
+            "Biomedical Signal & Image Processing",
+            "Supply Chain & Operations Research",
+            "Genomics, Proteomics & Bioinformatics",
+            "Cloud Systems, Microservices & DevOps",
+            "Cybersecurity, Cryptography & Privacy",
+            "Computer Vision & Deep Learning",
+            "Applied Mathematics & Modeling",
+            "Embedded Systems & IoT Architecture",
+            "Nanotechnology & Advanced Materials"
+          ]
+        },
+        {
+          "name": "TenureStatus",
+          "type": "Custom List",
+          "values": ["Tenured", "Tenure-Track", "Adjunct", "Visiting Professor", "Emeritus"]
+        }
+      ]
+    }
+  ]
+}
+
