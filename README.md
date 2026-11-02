@@ -5,8 +5,8 @@
 
 ## שער (Cover Page)
 * **שם המערכת:** מערכת ניהול כוח אדם למכללה (התאמה למרכז האקדמי לב / JCT)
-* **מוגש על ידי:** יואל מ. (Yoel M.)
-* **תעודת זהות:** 329821532
+* **מוגש על ידי:** יואל מ. (Yoel M.) , ת"ז: 329821532
+                 איתי בן עמי , ת"ז: 215948415
 * **קורס:** בסיסי נתונים - שלב א' (Relational Database Design & Implementation)
 * **מוסד אקדמי:** המרכז האקדמי לב (Jerusalem College of Technology)
 * **סביבת פיתוח ובסיס נתונים:** PostgreSQL 16+, Docker Compose, pgAdmin 4, Python 3 (Faker)
