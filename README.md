@@ -430,12 +430,10 @@ You can execute exactly the same files in identical order using the **Query Tool
 If you need to reset and drop the tables, execute the `dropTables.sql` file.
 
 
-![attendence]
-(C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/attendence.png)
+![Attendance](<screen shots/attendence.png>)
 
-![dashboard]
-(C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/dash board.png)
+![Dashboard](<screen shots/dash board.png>)
 
-![department](C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/department.png)
+![Department](<screen shots/department.png>)
 
-![staff](C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/staff.png)
+![Staff](<screen shots/staff.png>)
