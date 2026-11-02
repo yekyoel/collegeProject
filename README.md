@@ -1,73 +1,91 @@
-# פרויקט מסדי נתונים - שלב א'
-# מערכת ניהול כוח אדם למכללה (College Manpower & HR System)
+# Database Project - Phase A
+
+# College Manpower & HR System
 
 ---
 
-## שער (Cover Page)
-* **שם המערכת:** מערכת ניהול כוח אדם למכללה (התאמה למרכז האקדמי לב / JCT)
-* **מוגש על ידי:** יואל מ. (Yoel M.) , ת"ז: 329821532
-                 איתי בן עמי , ת"ז: 215948415
-* **קורס:** בסיסי נתונים - שלב א' (Relational Database Design & Implementation)
-* **מוסד אקדמי:** המרכז האקדמי לב (Jerusalem College of Technology)
-* **סביבת פיתוח ובסיס נתונים:** PostgreSQL 16+, Docker Compose, pgAdmin 4, Python 3 (Faker)
-* **תאריך הגשה:** נובמבר 2026
+## Cover Page
+
+* **System Name:** College Manpower & HR System (Adapted for Lev Academic Center / JCT)
+* **Submitted by:** Yoel, ID: 329821532
+Itay Ben Ami, ID: 215948415
+* **Course:** Relational Database Design & Implementation - Phase A
+* **Academic Institution:** Lev Academic Center (Jerusalem College of Technology)
+* **Development Environment & Database:** PostgreSQL 16+, Docker Compose, pgAdmin 4, Python 3 (Faker)
+* **Submission Date:** November 2026
 
 ---
 
-## תוכן עניינים (Table of Contents)
-1. [שער](#שער-cover-page)
-2. [תוכן עניינים](#תוכן-עניינים-table-of-contents)
-3. [מבוא ומטרת המערכת](#מבוא-ומטרת-המערכת)
-   - [מטרות המערכת](#מטרות-המערכת)
-   - [קישור למסכי המערכת](#קישור-למסכי-המערכת-ui-mockups)
-4. [תרשימים (ERD & DSD)](#תרשימים-erd--dsd)
-   - [תרשים ישויות וקשרים (ERD)](#תרשים-ישויות-וקשרים-erd)
-   - [תרשים מבנה נתונים וסכמה (DSD)](#תרשים-מבנה-נתונים-וסכמה-dsd)
-5. [החלטות עיצוב (Design Decisions)](#החלטות-עיצוב-design-decisions)
-   - [ירושה ותת-סוגים (Supertype / Subtype)](#1-שימוש-בירושה-supertypesubtype-עבור-סגל-העובדים)
-   - [ישות חלשה עבור דיווחי נוכחות (Weak Entity)](#2-שימוש-בישות-חלשה-weak-entity-עבור-שעון-נוכחות)
-   - [קשר רבים-לרבים להשתלמויות (M:N Junction Table)](#3-קשר-רבים-לרבים-mn-עבור-קורסי-הדרכה-והשתלמויות)
-   - [עמידה בצורה נורמלית שלישית (3NF Normalization)](#4-נרמול-לרמת-3nf)
-6. [אכלוס הנתונים (Data Population)](#אכלוס-הנתונים-data-population)
-   - [שיטה 1: סקריפט Python וספריית Faker (40,000 רשומות)](#שיטה-1-סקריפט-python-וספריית-faker)
-   - [שיטה 2: מחולל נתונים Mockaroo (500 רשומות)](#שיטה-2-מחולל-נתונים-mockaroo)
-   - [שיטה 3: הזנה ידנית SQL (מחלקות וקורסים)](#שיטה-3-הזנה-ידנית-manual-sql-import)
-   - [טבלת סיכום כמות שורות במערכת](#טבלת-סיכום-כמות-שורות-במערכת)
-7. [גיבוי ושחזור (Backup & Restore)](#גיבוי-ושחזור-backup--restore)
-   - [תהליך הגיבוי באמצעות pgAdmin 4](#תהליך-הגיבוי-באמצעות-pgadmin-4)
-   - [תהליך השחזור באמצעות pgAdmin 4](#תהליך-השחזור-באמצעות-pgadmin-4)
-   - [גיבוי ושחזור באמצעות שורת הפקודה (CLI)](#גיבוי-ושחזור-באמצעות-שורת-הפקודה-cli)
-8. [הוראות הרצה מהירה (Execution Guide)](#הוראות-הרצה-מהירה-execution-guide)
+## Table of Contents
+
+1. [Cover Page](https://www.google.com/search?q=%23cover-page)
+2. [Table of Contents](https://www.google.com/search?q=%23table-of-contents)
+3. [Introduction and System Objectives](https://www.google.com/search?q=%23introduction-and-system-objectives)
+* [System Objectives](https://www.google.com/search?q=%23system-objectives)
+* [UI Mockups Link](https://www.google.com/search?q=%23ui-mockups-link)
+
+
+4. [Diagrams (ERD & DSD)](https://www.google.com/search?q=%23diagrams-erd--dsd)
+* [Entity-Relationship Diagram (ERD)](https://www.google.com/search?q=%23entity-relationship-diagram-erd)
+* [Data Structure Diagram (DSD)](https://www.google.com/search?q=%23data-structure-diagram-dsd)
+
+
+5. [Design Decisions](https://www.google.com/search?q=%23design-decisions)
+* [Supertype / Subtype Inheritance](https://www.google.com/search?q=%231-supertypesubtype-inheritance-for-staff)
+* [Weak Entity for Attendance](https://www.google.com/search?q=%232-weak-entity-for-attendance-clock)
+* [M:N Junction Table for Training](https://www.google.com/search?q=%233-mn-many-to-many-relationship-for-training-and-certification-courses)
+* [3NF Normalization](https://www.google.com/search?q=%234-3nf-normalization)
+
+
+6. [Data Population](https://www.google.com/search?q=%23data-population)
+* [Method 1: Python Script and Faker Library (40,000 records)](https://www.google.com/search?q=%23method-1-python-script-and-faker-library)
+* [Method 2: Mockaroo Data Generator (500 records)](https://www.google.com/search?q=%23method-2-mockaroo-data-generator)
+* [Method 3: Manual SQL Import (Departments and Courses)](https://www.google.com/search?q=%23method-3-manual-sql-import)
+* [System Row Count Summary Table](https://www.google.com/search?q=%23system-row-count-summary-table)
+
+
+7. [Backup & Restore](https://www.google.com/search?q=%23backup--restore)
+* [Backup Process via pgAdmin 4](https://www.google.com/search?q=%23backup-process-via-pgadmin-4)
+* [Restore Process via pgAdmin 4](https://www.google.com/search?q=%23restore-process-via-pgadmin-4)
+* [CLI Backup & Restore](https://www.google.com/search?q=%23cli-backup--restore)
+
+
+8. [Execution Guide](https://www.google.com/search?q=%23execution-guide)
 
 ---
 
-## מבוא ומטרת המערכת
+## Introduction and System Objectives
 
-### מטרות המערכת
-מערכת **ניהול כוח אדם למכללה** (College Manpower & HR Management System) מיועדת לנהל, לתעד ולייעל את כלל תהליכי משאבי האנוש במרכז האקדמי לב (JCT). המערכת נותנת מענה מקיף לשלושה מוקדי פעילות מרכזיים:
+### System Objectives
 
-1. **ניהול סגל רב-גוני (Employee & Staff Hierarchy):**  
-   המכללה מעסיקה עובדים בעלי מאפיינים שונים בתכלית:
-   - **סגל אקדמי (Academic Staff):** פרופסורים, מרצים, חוקרים וראשי מעבדות, עבורם יש לתעד תחומי מחקר, דרגות אקדמיות ומעמד קביעות.
-   - **סגל מנהלי (Administrative Staff):** מנהלי מחלקות, עובדי לוגיסטיקה, רכש, כספים ומזכירות, עבורם יש לתעד מיקום משרד, אגף תפעולי ודרג ניהולי.  
-   המערכת מיישמת ארכיטקטורת ירושה (Supertype/Subtype) המאפשרת שיתוף שדות משותפים (תעודת זהות, שכר בסיס, תאריך תחילת העסקה, שיוך מחלקתי) לצד שמירה מבודדת ומדויקת של שדות ייחודיים לכל סקטור ללא ערכי NULL מיותרים.
+The **College Manpower & HR Management System** is designed to manage, document, and streamline all human resources processes. The system provides a comprehensive solution for three main operational areas:
 
-2. **מעקב נוכחות ושעון יומי (Attendance & Time Tracking):**  
-   מעקב מדויק ומבוקר אחר כניסות ויציאות יומיות של עובדים. דיווח הנוכחות ממומש כ**ישות חלשה (Weak Entity)** התלויה בעובד, ומאפשרת הפקת דוחות נוכחות חודשיים, חישוב שעות נוספות ואיתור חריגות.
+1. **Diverse Staff Hierarchy (Employee & Staff Hierarchy):**
+The college employs staff with fundamentally different characteristics:
+* **Academic Staff:** Professors, lecturers, researchers, and lab heads, for whom research fields, academic ranks, and tenure status must be recorded.
+* **Administrative Staff:** Department managers, logistics personnel, procurement, finance, and secretarial staff, for whom office locations, operational divisions, and management levels must be documented.
+The system implements a Supertype/Subtype architecture that allows sharing common fields (ID, base salary, hire date, department affiliation) alongside isolated and precise storage of sector-specific fields without unnecessary NULL values.
 
-3. **הדרכות, בטיחות והשתלמויות מקצועיות (Faculty Training & Certifications):**  
-   מעקב אחר קורסי הדרכה מגוונים – החל מרענוני בטיחות אש, עזרה ראשונה ובטיחות במעבדות לייזר, ועד סדנאות פדגוגיה חדשנית, כלי Generative AI בהוראה וסייבר. המערכת מנהלת קשר רבים-לרבים (M:N) בין העובדים לקורסים, כולל תיעוד תאריך השלמת הקורס לצורך מעקב תקופתי שנתי.
 
-### קישור למסכי המערכת (UI Mockups)
-סקיצות ומסכי המשתמש המתוכננים של המערכת (User Interface Prototypes) זמינים בקישור הבא:  
-🔗 **[LINK TO GOOGLE AI STUDIO]**
+2. **Daily Attendance and Time Tracking:**
+Accurate and controlled tracking of employees' daily clock-ins and clock-outs. Attendance reporting is implemented as a **Weak Entity** dependent on the employee, enabling the generation of monthly attendance reports, overtime calculation, and anomaly detection.
+3. **Training, Safety, and Professional Certifications:**
+Tracking diverse training courses—ranging from fire safety refreshers, first aid, and laser lab safety, to innovative pedagogy workshops, Generative AI in teaching, and cybersecurity. The system manages a Many-to-Many (M:N) relationship between employees and courses, including documenting the completion date for annual periodic tracking.
+
+### UI Mockups Link
+
+The planned UI prototypes and user interface mockups for the system are available at the following link:
+
+🔗 https://ai.studio/apps/26c68d43-b8ed-48e8-93e4-edd17ac53a6a?fullscreenApplet=true
+
 
 ---
 
-## תרשימים (ERD & DSD)
+## Diagrams (ERD & DSD)
 
-### תרשים ישויות וקשרים (ERD)
-תרשים ה-ERD ממחיש את הישויות במערכת, התכונות שלהן, והקשרים הסמנטיים (קשרי ירושה, ישות חלשה וקשר רבים-לרבים):
+### Entity-Relationship Diagram (ERD)
+
+The ERD illustrates the system's entities, their attributes, and semantic relationships (inheritance, weak entities, and many-to-many relationships):
 
 ```mermaid
 erDiagram
@@ -126,16 +144,18 @@ erDiagram
         int CourseID PK_FK
         date CompletionDate PK
     }
+
 ```
 
-#### צילום מסך של תרשים ה-ERD:
-![תרשים ישויות וקשרים - ERD](DBProject_329821532/screenshots/erd_diagram.png)  
-*(Placeholder: יש להחליף בתמונת תרשים ה-ERD שהופק בכלי המידול)*
+#### ERD Screenshot:
+
+*(Placeholder: Replace with the ERD image generated in the modeling tool)*
 
 ---
 
-### תרשים מבנה נתונים וסכמה (DSD)
-תרשים ה-DSD (Data Structure Diagram / Physical Relational Schema) מציג את מבנה הטבלאות הפיזי במסד הנתונים PostgreSQL, כולל מפתחות ראשיים (PK), מפתחות זרים (FK), אילוצי ערכים (CHECK/UNIQUE), וכללי מחיקה בהיררכיה:
+### Data Structure Diagram (DSD)
+
+The DSD (Physical Relational Schema) displays the physical table structure in the PostgreSQL database, including Primary Keys (PK), Foreign Keys (FK), value constraints (CHECK/UNIQUE), and hierarchical deletion rules:
 
 ```mermaid
 graph TD
@@ -167,215 +187,255 @@ graph TD
     style ACA fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
     style ATT fill:#fff3e0,stroke:#e65100,stroke-width:2px
     style ET fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-```
-
-#### צילום מסך של תרשים ה-DSD / Schema:
-![תרשים סכמת בסיס הנתונים - DSD](DBProject_329821532/screenshots/dsd_diagram.png)  
-*(Placeholder: יש להחליף בתמונת תרשים ה-DSD או סכמת הטבלאות מ-pgAdmin / DBeaver)*
-
----
-
-## החלטות עיצוב (Design Decisions)
-
-### 1. שימוש בירושה (Supertype/Subtype) עבור סגל העובדים
-במודל הנתונים נבחר דפוס **Table-per-Type (TPT)** / **Class Table Inheritance** לחלוקת עובדי המכללה:
-* **ישות על (`Employee`):** מאגדת את המאפיינים המשותפים לכל מועסק במכללה – מספר זהות ייחודי, שמות, תאריך תחילת העסקה, שכר בסיס ושיוך למחלקה.
-* **תת-סוג סגל מנהלי (`AdministrativeStaff`):** מרכז מאפיינים ייעודיים למנהלה ותפעול – מספר חדר/משרד (`OfficeNumber`) ודרג ניהולי (`ManagementLevel`).
-* **תת-סוג סגל אקדמי (`AcademicStaff`):** מרכז מאפיינים ייעודיים למרצים וחוקרים – תחום מחקר (`ResearchField`) ומעמד קביעות אקדמית (`TenureStatus`).
-
-**מדוע הועדף מודל זה על פני טבלה יחידה (Single Table with NULLs)?**
-1. **שמירה קפדנית על נרמול 3NF:** הימנעות משדות אופציונליים מרובי ערכי `NULL` מיותרים (Anti-pattern).
-2. **אכיפת אילוצי שלמות (Integrity Constraints):** במודל תת-סוגים ניתן להגדיר אילוץ `NOT NULL` ובדיקת תקינות (`CHECK`) על `ResearchField` עבור סגל אקדמי, מבלי לפגוע בסגל מנהלי.
-3. **מודל זר ומלא (Disjoint & Total Specialization):** כל עובד הוא בהכרח סגל מנהלי או סגל אקדמי, אך לעולם לא שניהם יחד באותו תפקיד. המפתח הראשי של תת-הסוג הוא `EmployeeID`, המהווה בו-זמנית גם מפתח זר (`FK`) המפנה לישות האב עם מחיקה תלויה (`ON DELETE CASCADE`).
-
----
-
-### 2. שימוש בישות חלשה (Weak Entity) עבור שעון נוכחות
-טבלת `AttendanceRecord` מוגדרת במפורש כ**ישות חלשה (Weak Entity)** התלויה בישות האב `Employee`:
-* **חוסר קיום עצמאי (Existence Dependency):** רשומת נוכחות בשעון אינה בעלת משמעות או קיום ללא העובד שביצע את ההחתמה. אם עובד נמחק מהמערכת, כל דיווחי הנוכחות שלו נמחקים מיידית (`ON DELETE CASCADE`).
-* **מפתח חלקי ומזהה (Identifying Relationship & Composite PK):**  
-  המפתח הראשי של הטבלה מורכב מהשילוב: `(EmployeeID, RecordID)`.  
-  `RecordID` משמש כמפתח חלקי (Discriminator) הממספר את הדיווחים של אותו עובד ספציפי, בעוד `EmployeeID` מהווה את המפתח הזר המזהה.
-* **יתרון ביצועי ועסקי:** מבנה זה משקף נאמנה את אופי פעולת שעוני נוכחות, מבטיח אינדוקס ישיר ויעיל לשאילתות היסטוריות לפי עובד, ומונע יצירת מזהים גלובליים מלאכותיים שאינם נדרשים.
-
----
-
-### 3. קשר רבים-לרבים (M:N) עבור קורסי הדרכה והשתלמויות
-הקשר בין עובד לבין קורסי הדרכה ממומש באמצעות טבלת קשר אסוציאטיבית (`Employee_Training`):
-* כל עובד יכול להשתתף במספר רב של קורסי הכשרה והשתלמויות לאורך שנות עבודתו.
-* כל קורס הדרכה מועבר לקבוצות רבות של עובדים.
-* **מפתח ראשי מורכב משולש `(EmployeeID, CourseID, CompletionDate)`:**  
-  הכללת תאריך הסיום (`CompletionDate`) במפתח הראשי מאפשרת מעקב אחר **השתלמויות תקופתיות חוזרות** (כגון רענון שנתי בבטיחות אש, רענון עזרה ראשונה והדרכת סייבר שנתית) – תרחיש קריטי במוסד אקדמי המעסיק מעל 500 עובדים.
-
----
-
-### 4. נרמול לרמת 3NF
-* **1NF:** כל התכונות אטומיות. אין מערכים או שדות רב-ערכיים. לכל טבלה מפתח ראשי מוגדר.
-* **2NF:** אין תלויות חלקיות. בטבלאות בעלות מפתח מורכב (`AttendanceRecord`, `Employee_Training`), כל תכונה שאינה מפתח תלויה במלוא המפתח.
-* **3NF:** אין תלויות טרנזיטיביות. פרטי מחלקה (תקציב) אינם מאוחסנים בטבלת עובד; פרטי קורס (ספק הדרכה) אינם מאוחסנים בטבלת השתתפות עובדים.
-
----
-
-## אכלוס הנתונים (Data Population)
-
-על פי דרישות הפרויקט, הנתונים אוכלסו באמצעות **3 שיטות נפרדות**, כאשר עבור שתי טבלאות מרכזיות נוצרו **מעל 20,000 רשומות לכל אחת**:
 
 ```
-                                  שיטות אכלוס הנתונים
+
+#### DSD / Schema Screenshot:
+
+*(Placeholder: Replace with the DSD image or table schema from pgAdmin / DBeaver)*
+
+---
+
+## Design Decisions
+
+### 1. Supertype/Subtype Inheritance for Staff
+
+A **Table-per-Type (TPT)** / **Class Table Inheritance** pattern was chosen for the college staff data model:
+
+* **Supertype Entity (`Employee`):** Consolidates attributes common to all college employees—unique ID number, names, hire date, base salary, and department affiliation.
+* **Administrative Staff Subtype (`AdministrativeStaff`):** Centralizes administration and operations-specific attributes—office/room number (`OfficeNumber`) and management level (`ManagementLevel`).
+* **Academic Staff Subtype (`AcademicStaff`):** Centralizes lecturer and researcher-specific attributes—research field (`ResearchField`) and academic tenure status (`TenureStatus`).
+
+**Why was this model preferred over a Single Table with NULLs?**
+
+1. **Strict adherence to 3NF:** Avoids optional fields with multiple unnecessary `NULL` values (an anti-pattern).
+2. **Enforcing Integrity Constraints:** The subtype model allows for `NOT NULL` constraints and validity checks (`CHECK`) on `ResearchField` for academic staff without impacting administrative staff.
+3. **Disjoint & Total Specialization:** Every employee is exclusively either administrative or academic, never both in the same role. The subtype's primary key is `EmployeeID`, which simultaneously serves as a foreign key (`FK`) referencing the parent entity with a dependent deletion rule (`ON DELETE CASCADE`).
+
+---
+
+### 2. Weak Entity for Attendance Clock
+
+The `AttendanceRecord` table is explicitly defined as a **Weak Entity** dependent on the parent `Employee` entity:
+
+* **Existence Dependency:** A time-clock attendance record has no meaning or existence without the employee who clocked it. If an employee is deleted from the system, all their attendance records are immediately deleted (`ON DELETE CASCADE`).
+* **Identifying Relationship & Composite PK:**
+The table's primary key consists of the combination: `(EmployeeID, RecordID)`.
+`RecordID` serves as a partial key (Discriminator) that numbers the records for that specific employee, while `EmployeeID` acts as the identifying foreign key.
+* **Performance and Business Advantage:** This structure accurately reflects the nature of time-clock operations, ensures direct and efficient indexing for historical queries per employee, and prevents the creation of unnecessary artificial global identifiers.
+
+---
+
+### 3. M:N (Many-to-Many) Relationship for Training and Certification Courses
+
+The relationship between an employee and training courses is implemented via an associative junction table (`Employee_Training`):
+
+* Each employee can participate in multiple training courses and certifications throughout their employment.
+* Each training course is delivered to many groups of employees.
+* **Tripartite Composite Primary Key `(EmployeeID, CourseID, CompletionDate)`:**
+Including the `CompletionDate` in the primary key enables tracking of **recurring periodic certifications** (such as annual fire safety refreshers, first aid renewals, and annual cyber training)—a critical scenario in an academic institution employing over 500 staff members.
+
+---
+
+### 4. 3NF Normalization
+
+* **1NF:** All attributes are atomic. There are no arrays or multi-valued fields. Every table has a defined primary key.
+* **2NF:** No partial dependencies exist. In tables with composite keys (`AttendanceRecord`, `Employee_Training`), every non-key attribute depends on the entire key.
+* **3NF:** No transitive dependencies exist. Department details (budget) are not stored in the employee table; course details (training provider) are not stored in the employee participation table.
+
+---
+
+## Data Population
+
+Per the project requirements, data was populated using **3 distinct methods**, generating **over 20,000 records each** for two core tables:
+
+```text
+                                  Data Population Methods
 ┌─────────────────────────────────────────┬─────────────────────────────────────────┬─────────────────────────────────────────┐
-│     שיטה 1: סקריפט Python (Faker)       │        שיטה 2: מחולל Mockaroo           │      שיטה 3: הזנה ידנית (Manual)        │
+│     Method 1: Python Script (Faker)     │        Method 2: Mockaroo Gen.          │       Method 3: Manual SQL Import       │
 ├─────────────────────────────────────────┼─────────────────────────────────────────┼─────────────────────────────────────────┤
-│ • AttendanceRecord: 20,000 רשומות       │ • Employee: 500 רשומות                  │ • Department: 12 מחלקות מכללה           │
-│ • Employee_Training: 20,000 רשומות      │ • AdministrativeStaff: 250 רשומות       │ • TrainingCourse: 18 קורסי הדרכה        │
-│                                         │ • AcademicStaff: 250 רשומות             │                                         │
+│ • AttendanceRecord: 20,000 records      │ • Employee: 500 records                 │ • Department: 12 college departments    │
+│ • Employee_Training: 20,000 records     │ • AdministrativeStaff: 250 records      │ • TrainingCourse: 18 training courses   │
+│                                         │ • AcademicStaff: 250 records            │                                         │
 └─────────────────────────────────────────┴─────────────────────────────────────────┴─────────────────────────────────────────┘
+
 ```
 
 ---
 
-### שיטה 1: סקריפט Python וספריית Faker
-* **מיקום הקוד:** `DBProject_329821532/שלב א/Programing/generate_data.py`
-* **קובץ ה-SQL שנוצר:** `DBProject_329821532/שלב א/Programing/insertTables_Python.sql`
-* **תיאור הפעולה:**  
-  הסקריפט משתמש בספריית `faker` ובמחוללי תאריכים מבוקרים ליצירת נתונים לוגיים ועקביים:
-  - **20,000 רשומות נוכחות (`AttendanceRecord`):** 40 ימי עבודה לכל אחד מ-500 העובדים (ימי א'-ה', שעות כניסה ריאליות בבוקר ושעות יציאה לאחר 8-9 שעות עבודה).
-  - **20,000 רשומות השתלמות (`Employee_Training`):** 40 רישומי סיום קורס לכל עובד, בחלוקה לקורסים שונים ותאריכים מגוונים.
-  - כתיבה יעילה במנות (Batches של 1,000 רשומות בכל הצהרת `INSERT`) המבטיחה טעינה מהירה ביותר ב-PostgreSQL.
+### Method 1: Python Script and Faker Library
 
-#### צילומי מסך - שיטת Python:
-![צילום מסך של סקריפט הפייתון](DBProject_329821532/screenshots/python_script.png)  
-*(Placeholder: צילום מסך של קוד ה-Python בסביבת הפיתוח)*
+* **Code Location:** `DBProject_329821532/שלב א/Programing/generate_data.py`
+* **Generated SQL File:** `DBProject_329821532/שלב א/Programing/insertTables_Python.sql`
+* **Operation Description:**
+The script utilizes the `faker` library and controlled date generators to create logical, consistent data:
+* **20,000 Attendance Records (`AttendanceRecord`):** 40 workdays for each of the 500 employees (Sunday-Thursday, realistic morning clock-in times, and clock-outs after 8-9 hours of work).
+* **20,000 Training Records (`Employee_Training`):** 40 course completion records per employee, distributed across various courses and dates.
+* Highly efficient batch writing (Batches of 1,000 records per `INSERT` statement) ensuring extremely fast loading in PostgreSQL.
 
-![צילום מסך של פלט הרצת הסקריפט](DBProject_329821532/screenshots/python_execution.png)  
-*(Placeholder: צילום מסך של הרצת הסקריפט בטרמינל ויצירת הקובץ)*
 
----
 
-### שיטה 2: מחולל נתונים Mockaroo
-* **מיקום קבצי ההגדרה:** `DBProject_329821532/שלב א/mockarooFiles/`
-  - סכמת הגדרות JSON: `mockaroo_schemas.json`
-  - מדריך עבודה מפורט: `mockaroo_instructions.md`
-  - קובץ SQL מוכן להרצה: `insertTables_Mockaroo.sql`
-* **תיאור הפעולה:**  
-  - הוגדרה סכמת 500 עובדים בעלי שמות פרטיים ומשפחה ישראליים, תעודות זהות בנות 9 ספרות ייחודיות, תאריכי גיוס מגוונים ומשכורות שוק אקדמיות.
-  - סגל מנהלי (רשומות 1 עד 250) מקושר לחדרים בבנייני המכללה (בניין לב, שלום, נווה, טכנולוגי) ודרגים ניהוליים.
-  - סגל אקדמי (רשומות 251 עד 500) מקושר לתחומי מחקר הנדסיים ומדעיים (למידת מכונה, אלקטרואופטיקה, קוונטים, ביו-אינפורמטיקה) ומעמדי קביעות.
+#### Screenshots - Python Method:
 
-#### צילומי מסך - שיטת Mockaroo:
-![צילום מסך של הגדרת סכמת Employee ב-Mockaroo](DBProject_329821532/screenshots/mockaroo_employee_schema.png)  
-*(Placeholder: צילום מסך מתוך אתר Mockaroo של סכמת העובדים)*
+*(Placeholder: Screenshot of the Python code in the IDE)*
 
-![צילום מסך של הורדת הנתונים מ-Mockaroo](DBProject_329821532/screenshots/mockaroo_export.png)  
-*(Placeholder: צילום מסך של הורדת קובץ הנתונים מהאתר)*
+*(Placeholder: Screenshot of script execution in the terminal generating the file)*
 
 ---
 
-### שיטה 3: הזנה ידנית (Manual SQL Import)
-* **מיקום הקובץ:** `DBProject_329821532/שלב א/DataImportFiles/insertTables_Manual.sql`
-* **תיאור הפעולה:**  
-  הזנה ישירה של נתוני תשתית (Lookup Tables) מותאמים אישית למרכז האקדמי לב:
-  - **12 מחלקות מכללה:** הנדסת תוכנה, מדעי המחשב, אלקטרואופטיקה ופוטוניקה, הנדסת תעשייה וניהול, ביואינפורמטיקה, ניהול וחשבונאות, משאבי אנוש ושכר, לוגיסטיקה ורכש, מנהל סטודנטים, מערכות מידע, כספים ושיווק.
-  - **18 קורסי הדרכה והשתלמות:** קורסי סייבר לאומי, פדגוגיה חדשנית, כתיבת הצעות מחקר לקרנות תחרותיות (ISF), הדרכות בטיחות אש, עזרה ראשונה, כלי בינה מלאכותית בהוראה, הנגשת השכלה לבעלי מוגבלויות ועוד.
+### Method 2: Mockaroo Data Generator
 
-#### צילומי מסך - הזנה ידנית:
-![צילום מסך של קובץ ה-SQL הידני ב-pgAdmin](DBProject_329821532/screenshots/manual_import_sql.png)  
-*(Placeholder: צילום מסך של הרצת פקודות ה-INSERT הידניות ב-Query Tool)*
+* **Configuration Files Location:** `DBProject_329821532/שלב א/mockarooFiles/`
+* JSON Definitions Schema: `mockaroo_schemas.json`
+* Detailed Workflow Guide: `mockaroo_instructions.md`
+* Ready-to-run SQL File: `insertTables_Mockaroo.sql`
 
----
 
-### טבלת סיכום כמות שורות במערכת
+* **Operation Description:**
+* Configured a schema of 500 employees with Israeli first and last names, unique 9-digit ID numbers, varied hire dates, and academic-market salaries.
+* Administrative staff (records 1 to 250) are linked to rooms in college buildings (Lev Building, Shalom, Naveh, Technology) and management levels.
+* Academic staff (records 251 to 500) are linked to engineering and scientific research fields (Machine Learning, Electro-optics, Quantum, Bioinformatics) and tenure statuses.
 
-| שם הטבלה | סוג הישות | שיטת אכלוס הנתונים | כמות שורות מאוכלסות | דרישת המטלה | עמידה ביעד |
-| :--- | :--- | :--- | :--- | :--- | :---: |
-| **Department** | מחלקות (Parent) | שיטה 3: הזנה ידנית | **12** | 10+ מחלקות | ✅ |
-| **TrainingCourse** | קטלוג קורסים (Parent) | שיטה 3: הזנה ידנית | **18** | 15+ קורסים | ✅ |
-| **Employee** | עובדי מכללה (Supertype) | שיטה 2: Mockaroo | **500** | 500+ רשומות | ✅ |
-| **AdministrativeStaff** | סגל מנהלי (Subtype) | שיטה 2: Mockaroo | **250** | חלק מ-500 עובדים | ✅ |
-| **AcademicStaff** | סגל אקדמי (Subtype) | שיטה 2: Mockaroo | **250** | חלק מ-500 עובדים | ✅ |
-| **AttendanceRecord** | שעון נוכחות (Weak Entity) | שיטה 1: Python Faker | **20,000** | **20,000+ רשומות** | ✅ |
-| **Employee_Training** | השתלמויות (Junction M:N) | שיטה 1: Python Faker | **20,000** | **20,000+ רשומות** | ✅ |
-| **סה"כ כללי במערכת** | | | **41,030 רשומות** | **יעד עבר בהצלחה** | **100%** |
+
+
+#### Screenshots - Mockaroo Method:
+
+*(Placeholder: Screenshot from the Mockaroo website of the employee schema)*
+
+*(Placeholder: Screenshot downloading the data file from the site)*
 
 ---
 
-## גיבוי ושחזור (Backup & Restore)
+### Method 3: Manual SQL Import
 
-בסביבת מסדי נתונים מוסדיים ואקדמיים, מנגנון גיבוי ושחזור אמין מהווה מרכיב קריטי להבטחת שרידות המידע (Disaster Recovery & Business Continuity). להלן התיעוד המלא של ביצוע הגיבוי והשחזור במסד הנתונים PostgreSQL באמצעות ממשק **pgAdmin 4** ובאמצעות כלי ה-CLI.
+* **File Location:** `DBProject_329821532/שלב א/DataImportFiles/insertTables_Manual.sql`
+* **Operation Description:**
+Direct entry of infrastructure data (Lookup Tables) customized for the Lev Academic Center:
+* **12 College Departments:** Software Engineering, Computer Science, Electro-optics & Photonics, Industrial Engineering & Management, Bioinformatics, Management & Accounting, HR & Payroll, Logistics & Procurement, Student Administration, Information Systems, Finance, and Marketing.
+* **18 Training & Certification Courses:** National Cyber Courses, Innovative Pedagogy, Writing Research Proposals for Competitive Grants (ISF), Fire Safety Training, First Aid, AI Tools in Teaching, Accessibility in Higher Education, and more.
 
-### תהליך הגיבוי באמצעות pgAdmin 4
-1. התחבר לממשק ה-Web של pgAdmin 4 (בדפדפן: `http://localhost:8080`).
-2. בעץ האובייקטים (Object Explorer), נווט אל השרת והרחב את רשימת מסדי הנתונים (`Databases`).
-3. לחץ קליק ימני על מסד הנתונים של הפרויקט (`college_hr_db`) ובחר באפשרות **Backup...**.
-4. בחלונית הגיבוי:
-   - **Filename:** הזן שם מלא ומיקום לשמירת קובץ הגיבוי, לדוגמה: `college_db_backup_stageA.dump`.
-   - **Format:** בחר בפורמט `Custom` (פורמט בינארי גמיש ודחוס המאפשר שחזור סלקטיבי) או `Plain` (סקריפט SQL טקסטואלי מלא).
-   - בלשונית **Dump options:** סמן `Pre-data`, `Data`, ו-`Post-data` על מנת לגבות הן את הסכמות והמפתחות והן את כל 41,000 הרשומות.
-5. לחץ על כפתור **Backup**.
-6. המתן להופעת ההודעה הירוקה: `Process completed successfully`.
 
-#### צילום מסך של תהליך הגיבוי ב-pgAdmin:
-![צילום מסך של חלון הגיבוי ב-pgAdmin](DBProject_329821532/screenshots/db_backup_process.png)  
-*(Placeholder: צילום מסך של חלון הגדרות ה-Backup והודעת ההצלחה ב-pgAdmin)*
+
+#### Screenshots - Manual Import:
+
+*(Placeholder: Screenshot executing the manual INSERT commands in the Query Tool)*
 
 ---
 
-### תהליך השחזור באמצעות pgAdmin 4
-1. במידת הצורך לשחזור בעקבות תקלה או בדיקת שחזור (Disaster Drill):
-   - ניתן ליצור מסד נתונים חדש וריק, למשל: `college_hr_db_restored`.
-2. לחץ קליק ימני על מסד הנתונים החדש ובחר **Restore...**.
-3. בחלונית השחזור:
-   - **Format:** בחר בפורמט התואם לקובץ הגיבוי (`Custom` או `Directory`).
-   - **Filename:** בחר את קובץ הגיבוי שנוצר בשלב הקודם (`college_db_backup_stageA.dump`).
-4. לחץ על כפתור **Restore**.
-5. המתן להודעת הסיום: `Process completed successfully`.
-6. פתח את ה-Query Tool והרץ את שאילתת הספירה מתוך `selectAll.sql` כדי לוודא שכל 41,030 הרשומות שוחזרו ללא דופי.
+### System Row Count Summary Table
 
-#### צילום מסך של תהליך השחזור ב-pgAdmin:
-![צילום מסך של חלון השחזור ב-pgAdmin](DBProject_329821532/screenshots/db_restore_process.png)  
-*(Placeholder: צילום מסך של חלון ה-Restore והודעת ההצלחה ב-pgAdmin)*
+| Table Name | Entity Type | Data Population Method | Populated Rows Count | Assignment Requirement | Target Met |
+| --- | --- | --- | --- | --- | --- |
+| **Department** | Departments (Parent) | Method 3: Manual Import | **12** | 10+ departments | ✅ |
+| **TrainingCourse** | Course Catalog (Parent) | Method 3: Manual Import | **18** | 15+ courses | ✅ |
+| **Employee** | College Staff (Supertype) | Method 2: Mockaroo | **500** | 500+ records | ✅ |
+| **AdministrativeStaff** | Admin Staff (Subtype) | Method 2: Mockaroo | **250** | Part of the 500 | ✅ |
+| **AcademicStaff** | Academic Staff (Subtype) | Method 2: Mockaroo | **250** | Part of the 500 | ✅ |
+| **AttendanceRecord** | Time Clock (Weak Entity) | Method 1: Python Faker | **20,000** | **20,000+ records** | ✅ |
+| **Employee_Training** | Certifications (Junction M:N) | Method 1: Python Faker | **20,000** | **20,000+ records** | ✅ |
+| **Grand Total in System** |  |  | **41,030 records** | **Goal Achieved** | **100%** |
 
 ---
 
-### גיבוי ושחזור באמצעות שורת הפקודה (CLI)
-עבור אוטומציה וסקריפטים, ניתן לבצע גיבוי ושחזור ישירות מתוך הטרמינל או מתוך קונטיינר ה-Docker:
+## Backup & Restore
+
+In institutional and academic database environments, a reliable backup and restore mechanism is a critical component for ensuring data survivability (Disaster Recovery & Business Continuity). Below is the complete documentation for performing backups and restores on the PostgreSQL database via the **pgAdmin 4** interface and the CLI tool.
+
+### Backup Process via pgAdmin 4
+
+1. Connect to the pgAdmin 4 Web interface (in browser: `http://localhost:8080`).
+2. In the Object Explorer tree, navigate to the server and expand the `Databases` list.
+3. Right-click the project database (`college_hr_db`) and select the **Backup...** option.
+4. In the backup dialog:
+* **Filename:** Enter a full name and location to save the backup file, e.g., `college_db_backup_stageA.dump`.
+* **Format:** Select `Custom` (a flexible, compressed binary format allowing selective restores) or `Plain` (a full textual SQL script).
+* In the **Dump options** tab: Check `Pre-data`, `Data`, and `Post-data` to back up schemas, keys, and all 41,000 records.
+
+
+5. Click the **Backup** button.
+6. Wait for the green notification: `Process completed successfully`.
+
+#### pgAdmin Backup Screenshot:
+
+*(Placeholder: Screenshot of the Backup settings window and success message in pgAdmin)*
+
+---
+
+### Restore Process via pgAdmin 4
+
+1. If a restore is needed due to failure or a Disaster Drill:
+* You can create a new, empty database, e.g., `college_hr_db_restored`.
+
+
+2. Right-click the new database and select **Restore...**.
+3. In the restore dialog:
+* **Format:** Select the format matching the backup file (`Custom` or `Directory`).
+* **Filename:** Select the backup file generated in the previous step (`college_db_backup_stageA.dump`).
+
+
+4. Click the **Restore** button.
+5. Wait for the completion notification: `Process completed successfully`.
+6. Open the Query Tool and run the counting query from `selectAll.sql` to verify that all 41,030 records were restored flawlessly.
+
+#### pgAdmin Restore Screenshot:
+
+*(Placeholder: Screenshot of the Restore window and success message in pgAdmin)*
+
+---
+
+### CLI Backup & Restore
+
+For automation and scripts, backups and restores can be executed directly from the terminal or from within the Docker container:
 
 ```bash
-# 1. פקודת גיבוי מלא (pg_dump) בפורמט בינארי מותאם אישית:
+# 1. Full backup command (pg_dump) in custom binary format:
 docker exec -t PostgreSQL_DB pg_dump -U postgres -F c -b -v -f /tmp/college_hr_backup.dump college_hr_db
 
-# העתקת קובץ הגיבוי מהקונטיינר למחשב המארח:
+# Copying the backup file from the container to the host machine:
 docker cp PostgreSQL_DB:/tmp/college_hr_backup.dump ./college_hr_backup.dump
 
-# 2. פקודת שחזור מלא (pg_restore) למסד נתונים חדש:
+# 2. Full restore command (pg_restore) to a new database:
 docker exec -i PostgreSQL_DB pg_restore -U postgres -d college_hr_db_restored -v /tmp/college_hr_backup.dump
+
 ```
 
 ---
 
-## הוראות הרצה מהירה (Execution Guide)
+## Execution Guide
 
-סדר הרצת הקבצים המומלץ והמדויק במסד הנתונים:
+The recommended and exact order for executing the files in the database:
 
 ```bash
-# שלב 1: הקמת סביבת Docker (PostgreSQL + pgAdmin) במידה ומשתמשים בקונטיינרים
+# Step 1: Set up the Docker environment (PostgreSQL + pgAdmin) if using containers
 docker-compose up -d
 
-# שלב 2: יצירת מבנה הטבלאות (DDL)
+# Step 2: Create the table structure (DDL)
 psql -U postgres -d college_hr_db -f "DBProject_329821532/שלב א/createTables.sql"
 
-# שלב 3: אכלוס נתוני בסיס (מחלקות וקורסים) - שיטה 3
+# Step 3: Populate baseline data (departments and courses) - Method 3
 psql -U postgres -d college_hr_db -f "DBProject_329821532/שלב א/DataImportFiles/insertTables_Manual.sql"
 
-# שלב 4: אכלוס 500 עובדים וסגלים - שיטה 2 (Mockaroo)
+# Step 4: Populate 500 employees and staff - Method 2 (Mockaroo)
 psql -U postgres -d college_hr_db -f "DBProject_329821532/שלב א/mockarooFiles/insertTables_Mockaroo.sql"
 
-# שלב 5: אכלוס 40,000 רשומות נוכחות והשתלמויות - שיטה 1 (Python)
+# Step 5: Populate 40,000 attendance and training records - Method 1 (Python)
 psql -U postgres -d college_hr_db -f "DBProject_329821532/שלב א/Programing/insertTables_Python.sql"
 
-# שלב 6: הרצת שאילתות בדיקה ווידוא כמויות
+# Step 6: Run test queries and verify row counts
 psql -U postgres -d college_hr_db -f "DBProject_329821532/שלב א/selectAll.sql"
+
 ```
 
-ניתן להריץ את אותם הקבצים בדיוק גם דרך ה-**Query Tool** של **pgAdmin 4** באותו הסדר בדיוק.
-אם נדרש איפוס ומחיקת הטבלאות, יש להריץ את הקובץ `dropTables.sql`.
+You can execute exactly the same files in identical order using the **Query Tool** in **pgAdmin 4**.
+If you need to reset and drop the tables, execute the `dropTables.sql` file.
 
+
+![attendence]
+(C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/attendence.png)
+
+![dashboard]
+(C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/dash board.png)
+
+![department](C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/department.png)
+
+![staff](C:\Users\yoelm\source\repos\DBProject\.git\collegeProject\screen shots\screen shots/staff.png)

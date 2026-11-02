@@ -1,185 +1,189 @@
-# מילון נתונים - Data Dictionary
-## מערכת ניהול כוח אדם למכללה (JCT / מכון לב)
-**מגיש:** 329821532  
-**שלב:** שלב א'  
-**תאריך:** 2026-11-02  
+# Data Dictionary
+## College Manpower & HR Management System (JCT)
+**Submitter ID:** 329821532  
+**Stage:** Stage A  
+**Date:** 2026-11-02  
 
 ---
 
-### תוכן עניינים
-1. [מבוא ומטרת המערכת](#1-מבוא-ומטרת-המערכת)
-2. [סקירת הישויות והקשרים (ER Overview)](#2-סקירת-הישויות-והקשרים-er-overview)
-3. [מילון הנתונים המפורט](#3-מילון-הנתונים-המפורט)
-   - [טבלה 1: Department (מחלקות)](#טבלה-1-department-מחלקות)
-   - [טבלה 2: TrainingCourse (קורסי הדרכה)](#טבלה-2-trainingcourse-קורסי-הדרכה)
-   - [טבלה 3: Employee (עובדים - Supertype)](#טבלה-3-employee-עובדים---supertype)
-   - [טבלה 4: AdministrativeStaff (סגל מנהלי - Subtype)](#טבלה-4-administrativestaff-סגל-מנהלי---subtype)
-   - [טבלה 5: AcademicStaff (סגל אקדמי - Subtype)](#טבלה-5-academicstaff-סגל-אקדמי---subtype)
-   - [טבלה 6: AttendanceRecord (דיווחי נוכחות - Weak Entity)](#טבלה-6-attendancerecord-דיווחי-נוכחות---weak-entity)
-   - [טבלה 7: Employee_Training (רישומי השתלמות - Junction)](#טבלה-7-employee_training-רישומי-השתלמות---junction)
-4. [ניתוח נרמול (3NF Justification)](#4-ניתוח-נרמול-3nf-justification)
-5. [אילוצי שלמות עסקיים (Integrity & Business Rules)](#5-אילוצי-שלמות-עסקיים-integrity--business-rules)
+### Table of Contents
+1. [System Overview & Architecture](#1-system-overview--architecture)
+2. [Entity-Relationship (ER) Summary](#2-entity-relationship-er-summary)
+3. [Detailed Table Specifications](#3-detailed-table-specifications)
+   - [Table 1: Department](#table-1-department)
+   - [Table 2: TrainingCourse](#table-2-trainingcourse)
+   - [Table 3: Employee (Supertype)](#table-3-employee-supertype)
+   - [Table 4: AdministrativeStaff (Subtype)](#table-4-administrativestaff-subtype)
+   - [Table 5: AcademicStaff (Subtype)](#table-5-academicstaff-subtype)
+   - [Table 6: AttendanceRecord (Weak Entity)](#table-6-attendancerecord-weak-entity)
+   - [Table 7: Employee_Training (M:N Junction Table)](#table-7-employee_training-mn-junction-table)
+4. [Third Normal Form (3NF) Justification](#4-third-normal-form-3nf-justification)
+5. [Business Rules & Integrity Constraints](#5-business-rules--integrity-constraints)
 
 ---
 
-### 1. מבוא ומטרת המערכת
-מערכת ניהול כוח האדם למכללה (College Manpower and HR System) נועדה לנהל בצורה מרכזית, אמינה ומדויקת את כלל היבטי כוח האדם במכללה (בהתאמה לפרופיל הפעילות של המרכז האקדמי לב / JCT).  
-המערכת מנהלת:
-- **סגל העובדים:** חלוקה ברורה בין סגל אקדמי (חוקרים, מרצים, ראשי מעבדות) לסגל מנהלי (רכש, משאבי אנוש, תפעול, כספים).
-- **מחלקות אקדמיות ומנהליות:** מעקב אחר תקציב מחלקתי והשיוך הארגוני של כל עובד.
-- **שעון נוכחות יומי:** מעקב מדויק של שעות כניסה ויציאה לכל יום עבודה (ישות חלשה).
-- **הדרכות והשתלמויות מקצועיות:** מעקב אחר השתתפות והשלמת קורסים (בטיחות, פדגוגיה, סייבר, מחקר וכיו"ב) על ידי עובדי המכללה (קשר רבים-לרבים).
+### 1. System Overview & Architecture
+The **College Manpower & Human Resources (HR) Management System** is a normalized relational database designed to track, manage, and optimize all aspects of college personnel at the **Jerusalem College of Technology (JCT)**.
 
-כל הטבלאות מתוכננות בצורה מנורמלת ברמת **3NF** (צורה נורמלית שלישית) למניעת כפילויות, אנומליות הוספה, עדכון ומחיקה.
+The system encompasses:
+- **Staff Hierarchy:** A distinct partition between academic faculty (professors, lecturers, researchers) and administrative staff (department coordinators, operations, finance, IT, HR).
+- **Academic and Administrative Departments:** Tracking department budgets, headcount, and organizational hierarchy.
+- **Daily Attendance Tracking:** Fine-grained monitoring of clock-in and clock-out timestamps for all college personnel (modeled as a weak entity dependent on Employee).
+- **Professional Development & Seminars:** Full tracking of seminars, safety workshops, and pedagogical training completed by staff members (modeled via a many-to-many junction entity).
+
+All entities are strictly normalized to **Third Normal Form (3NF)** to eliminate data redundancy, prevent update/insertion/deletion anomalies, and guarantee high data integrity.
 
 ---
 
-### 2. סקירת הישויות והקשרים (ER Overview)
+### 2. Entity-Relationship (ER) Summary
 
-| שם הטבלה | סוג הישות | מפתח ראשי (PK) | קשרי גומלין עיקריים | כמות רשומות צפויה |
+| Table Name | Entity Category | Primary Key (PK) | Relationship & Cardinality | Expected Population |
 | :--- | :--- | :--- | :--- | :--- |
-| **Department** | Strong / Lookup | `DepartmentID` | 1:N מול Employee | 10+ (הזנה ידנית) |
-| **TrainingCourse** | Strong / Lookup | `CourseID` | 1:N מול Employee_Training | 15+ (הזנה ידנית) |
-| **Employee** | Supertype Entity | `EmployeeID` | N:1 מול Department; 1:1 מול Subtypes | 500 (Mockaroo) |
-| **AdministrativeStaff** | Subtype Entity | `EmployeeID` | 1:1 מול Employee (ירושה) | ~250 (Mockaroo) |
-| **AcademicStaff** | Subtype Entity | `EmployeeID` | 1:1 מול Employee (ירושה) | ~250 (Mockaroo) |
-| **AttendanceRecord** | Weak Entity | `(EmployeeID, RecordID)` | N:1 מול Employee (ישות מזהה) | 20,000+ (Python) |
-| **Employee_Training** | Junction Entity (M:N) | `(EmployeeID, CourseID, CompletionDate)` | N:1 מול Employee, N:1 מול TrainingCourse | 20,000+ (Python) |
+| **Department** | Strong / Lookup | DepartmentID | 1:N with Employee | 12 (Manual import) |
+| **TrainingCourse** | Strong / Lookup | CourseID | 1:N with Employee_Training | 18 (Manual import) |
+| **Employee** | Supertype Entity | EmployeeID | N:1 with Department; 1:1 with Subtypes | 500 (Mockaroo) |
+| **AdministrativeStaff** | Subtype Entity | EmployeeID | 1:1 with Employee (Inheritance) | 250 (Mockaroo) |
+| **AcademicStaff** | Subtype Entity | EmployeeID | 1:1 with Employee (Inheritance) | 250 (Mockaroo) |
+| **AttendanceRecord** | Weak Entity | (EmployeeID, RecordID) | N:1 with Employee (Existence-dependent) | 20,000 (Python Faker) |
+| **Employee_Training** | Junction Entity (M:N) | (EmployeeID, CourseID, CompletionDate) | N:1 with Employee, N:1 with TrainingCourse | 20,000 (Python Faker) |
 
 ---
 
-### 3. מילון הנתונים המפורט
+### 3. Detailed Table Specifications
 
-#### טבלה 1: Department (מחלקות)
-- **תיאור:** מייצגת את מחלקות המכללה, הן האקדמיות (מדעי המחשב, הנדסת תוכנה, הנדסת תעשייה וניהול וכו') והן המנהליות (משאבי אנוש, לוגיסטיקה, כספים וכו').
-- **מפתח ראשי:** `DepartmentID`
+#### Table 1: Department
+- **Description:** Stores college academic and operational departments (e.g., Software Engineering, Computer Science, Human Resources, Finance).
+- **Primary Key:** DepartmentID
+- **Foreign Keys:** None
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `DepartmentID` | INT | PRIMARY KEY | מזהה ייחודי למחלקה | 101 |
-| `DepartmentName` | VARCHAR(100) | NOT NULL, UNIQUE | שם המחלקה | 'הנדסת תוכנה' |
-| `Budget` | NUMERIC(12, 2) | NOT NULL, CHECK (Budget >= 0) | תקציב שנתי בש"ח | 2500000.00 |
+| DepartmentID | INT | PRIMARY KEY, NOT NULL | Unique identifier for each department | 101 |
+| DepartmentName | VARCHAR(100) | NOT NULL, UNIQUE | Official department title | 'Software Engineering' |
+| Budget | NUMERIC(12, 2) | NOT NULL, CHECK (Budget >= 0) | Annual allocated operating budget | 4500000.00 |
 
 ---
 
-#### טבלה 2: TrainingCourse (קורסי הדרכה)
-- **תיאור:** קטלוג קורסי העשרה, הדרכות בטיחות, השתלמויות פדגוגיות וקורסי סייבר ומיחשוב לעובדי המוסד.
-- **מפתח ראשי:** `CourseID`
+#### Table 2: TrainingCourse
+- **Description:** Catalog of professional, pedagogical, safety, and technological seminars available to college personnel.
+- **Primary Key:** CourseID
+- **Foreign Keys:** None
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `CourseID` | INT | PRIMARY KEY | מזהה קורס הדרכה | 201 |
-| `CourseName` | VARCHAR(150) | NOT NULL, UNIQUE | שם הקורס/ההשתלמות | 'אבטחת מידע וסייבר בענן' |
-| `ProviderName` | VARCHAR(100) | NOT NULL | גוף מעביר ההדרכה | 'המערך הלאומי לסייבר' |
+| CourseID | INT | PRIMARY KEY, NOT NULL | Unique course catalog identifier | 201 |
+| CourseName | VARCHAR(150) | NOT NULL, UNIQUE | Full title of the course/workshop | 'Pedagogical Innovation & Active Teaching' |
+| ProviderName | VARCHAR(100) | NOT NULL | Internal unit or external training vendor | 'Center for Teaching Excellence' |
 
 ---
 
-#### טבלה 3: Employee (עובדים - Supertype)
-- **תיאור:** ישות-על המרכזת את הנתונים המשותפים לכלל עובדי המכללה (אקדמיים ומנהליים כאחד).
-- **מפתח ראשי:** `EmployeeID`
-- **מפתחות זרים:** `DepartmentID` מפנה ל-`Department(DepartmentID)`
+#### Table 3: Employee (Supertype)
+- **Description:** Supertype table containing core personal, financial, and organizational data shared by all college personnel.
+- **Primary Key:** EmployeeID
+- **Foreign Keys:** DepartmentID -> Department(DepartmentID) ON DELETE RESTRICT ON UPDATE CASCADE
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `EmployeeID` | INT | PRIMARY KEY | מזהה פנימי ייחודי לעובד | 1001 |
-| `FirstName` | VARCHAR(50) | NOT NULL | שם פרטי | 'אביגיל' |
-| `LastName` | VARCHAR(50) | NOT NULL | שם משפחה | 'כהן' |
-| `ID_Number` | VARCHAR(9) | NOT NULL, UNIQUE, CHECK (LENGTH=9) | מספר תעודת זהות ישראלית (9 ספרות) | '032982153' |
-| `HireDate` | DATE | NOT NULL, CHECK (HireDate <= CURRENT_DATE) | תאריך תחילת עבודה במכללה | '2019-09-01' |
-| `BaseSalary` | NUMERIC(10, 2) | NOT NULL, CHECK (BaseSalary >= 0) | שכר בסיס חודשי בש"ח | 18500.00 |
-| `DepartmentID` | INT | NOT NULL, FK -> Department | מזהה המחלקה בה מועסק העובד | 101 |
-| `EmployeeType` | VARCHAR(20) | NOT NULL, CHECK IN ('Administrative', 'Academic') | סוג עובד (דיסקרימיננטור ירושה) | 'Academic' |
+| EmployeeID | INT | PRIMARY KEY, NOT NULL | Unique college employee serial identifier | 1 |
+| FirstName | VARCHAR(50) | NOT NULL | Employee given name | 'Mary' |
+| LastName | VARCHAR(50) | NOT NULL | Employee family name | 'Hughes' |
+| ID_Number | VARCHAR(9) | NOT NULL, UNIQUE, CHECK (LENGTH = 9) | National identity number (9 digits) | '329000001' |
+| HireDate | DATE | NOT NULL, CHECK (HireDate <= CURRENT_DATE) | Date of employment commencement | '2021-05-24' |
+| BaseSalary | NUMERIC(10, 2) | NOT NULL, CHECK (BaseSalary >= 0) | Monthly base gross salary | 39267.15 |
+| DepartmentID | INT | NOT NULL, FK -> Department | Foreign key linking to Department | 107 |
+| EmployeeType | VARCHAR(20) | NOT NULL, CHECK IN ('Administrative', 'Academic') | Subtype discriminator flag | 'Administrative' |
 
 ---
 
-#### טבלה 4: AdministrativeStaff (סגל מנהלי - Subtype)
-- **תיאור:** ישות-בן של `Employee` עבור עובדי מנהלה, מזכירות, רכש, אחזקה וניהול תפעולי.
-- **מפתח ראשי:** `EmployeeID` (מהווה גם FK מפנה ל-`Employee.EmployeeID`)
+#### Table 4: AdministrativeStaff (Subtype)
+- **Description:** Specialized subtype table storing operational attributes exclusive to administrative and logistical personnel.
+- **Primary Key:** EmployeeID (also Foreign Key referencing Employee.EmployeeID)
+- **Foreign Keys:** EmployeeID -> Employee(EmployeeID) ON DELETE CASCADE ON UPDATE CASCADE
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `EmployeeID` | INT | PRIMARY KEY, FK -> Employee(EmployeeID) ON DELETE CASCADE | מזהה עובד (מקושר לישות-העל) | 1002 |
-| `OfficeNumber` | VARCHAR(20) | NOT NULL | מיקום חדר/משרד במכללה | 'בניין לב, חדר 312' |
-| `ManagementLevel` | VARCHAR(30) | NOT NULL, CHECK IN ('Entry', 'Junior', 'Mid', 'Senior', 'Director', 'Head of Administration') | דרג ניהולי | 'Senior' |
+| EmployeeID | INT | PRIMARY KEY, FK -> Employee | Links 1:1 to Employee supertype | 1 |
+| OfficeNumber | VARCHAR(50) | NOT NULL | Campus building and room designation | 'Shalom-Rm388' |
+| ManagementLevel | VARCHAR(30) | NOT NULL, CHECK (ManagementLevel IN ('Entry', 'Junior', 'Mid', 'Senior', 'Director', 'Head of Administration')) | Seniority tier within administrative hierarchy | 'Junior' |
 
 ---
 
-#### טבלה 5: AcademicStaff (סגל אקדמי - Subtype)
-- **תיאור:** ישות-בן של `Employee` עבור חברי סגל הוראה, מרצים מן החוץ, חוקרים ופרופסורים.
-- **מפתח ראשי:** `EmployeeID` (מהווה גם FK מפנה ל-`Employee.EmployeeID`)
+#### Table 5: AcademicStaff (Subtype)
+- **Description:** Specialized subtype table storing academic, teaching, and research attributes exclusive to faculty members.
+- **Primary Key:** EmployeeID (also Foreign Key referencing Employee.EmployeeID)
+- **Foreign Keys:** EmployeeID -> Employee(EmployeeID) ON DELETE CASCADE ON UPDATE CASCADE
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `EmployeeID` | INT | PRIMARY KEY, FK -> Employee(EmployeeID) ON DELETE CASCADE | מזהה עובד אקדמי | 1001 |
-| `ResearchField` | VARCHAR(100) | NOT NULL | תחום מחקר / התמחות אקדמית | 'אלגוריתמים ובינה מלאכותית' |
-| `TenureStatus` | VARCHAR(20) | NOT NULL, CHECK IN ('Tenured', 'Tenure-Track', 'Adjunct', 'Visiting Professor', 'Emeritus') | מעמד קביעות אקדמית | 'Tenured' |
+| EmployeeID | INT | PRIMARY KEY, FK -> Employee | Links 1:1 to Employee supertype | 251 |
+| ResearchField | VARCHAR(100) | NOT NULL | Primary academic discipline / lab focus | 'Algorithms and Artificial Intelligence' |
+| TenureStatus | VARCHAR(20) | NOT NULL, CHECK (TenureStatus IN ('Tenured', 'Tenure-Track', 'Adjunct', 'Visiting Professor', 'Emeritus')) | Official academic employment status | 'Tenured' |
 
 ---
 
-#### טבלה 6: AttendanceRecord (דיווחי נוכחות - Weak Entity)
-- **תיאור:** ישות חלשה (Weak Entity) המייצגת רישומי נוכחות יומיים בשעון נוכחות. קיומה וזיהויה תלויים לחלוטין בישות האב `Employee`.
-- **מפתח ראשי מורכב:** `(EmployeeID, RecordID)`
-- **מפתחות זרים:** `EmployeeID` מפנה ל-`Employee(EmployeeID)` עם `ON DELETE CASCADE`.
+#### Table 6: AttendanceRecord (Weak Entity)
+- **Description:** Daily clock-in and clock-out logs. Existence-dependent on Employee (weak entity).
+- **Composite Primary Key:** (EmployeeID, RecordID)
+- **Foreign Keys:** EmployeeID -> Employee(EmployeeID) ON DELETE CASCADE ON UPDATE CASCADE
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `EmployeeID` | INT | NOT NULL, FK -> Employee (חלק מה-PK) | מזהה העובד | 1001 |
-| `RecordID` | INT | NOT NULL (Discriminator / Partial Key) | מספר סידורי של הדיווח עבור העובד | 1 |
-| `WorkDate` | DATE | NOT NULL, CHECK (WorkDate <= CURRENT_DATE) | תאריך יום העבודה | '2026-05-14' |
-| `ClockInTime` | TIME | NOT NULL | שעת כניסה | '08:12:00' |
-| `ClockOutTime` | TIME | CHECK (ClockOutTime IS NULL OR ClockOutTime >= ClockInTime) | שעת יציאה (יכולה להיות NULL במהלך יום העבודה) | '16:45:00' |
+| EmployeeID | INT | NOT NULL, PK, FK -> Employee | Identifier of the employee punching clock | 1 |
+| RecordID | INT | NOT NULL, PK (Discriminator) | Sequential shift counter per employee | 1 |
+| WorkDate | DATE | NOT NULL, CHECK (WorkDate <= CURRENT_DATE) | Date shift was performed | '2025-01-05' |
+| ClockInTime | TIME | NOT NULL | Time of arrival | '08:15:30' |
+| ClockOutTime | TIME | CHECK (ClockOutTime IS NULL OR ClockOutTime >= ClockInTime) | Time of departure (NULL if ongoing) | '17:05:45' |
 
 ---
 
-#### טבלה 7: Employee_Training (רישומי השתלמות - Junction)
-- **תיאור:** טבלת קשר (Junction Table) המממשת קשר רבים-לרבים (M:N) בין עובדים לבין קורסי הדרכה. מאפשרת לעובד לעבור קורסים שונים וכן קורסים חוזרים (כגון רענון בטיחות/סייבר שנתי).
-- **מפתח ראשי מורכב:** `(EmployeeID, CourseID, CompletionDate)`
-- **מפתחות זרים:**  
-  - `EmployeeID` -> `Employee(EmployeeID)` ON DELETE CASCADE  
-  - `CourseID` -> `TrainingCourse(CourseID)` ON DELETE CASCADE  
+#### Table 7: Employee_Training (M:N Junction Table)
+- **Description:** Associative junction table resolving the many-to-many relationship between employees and completed training courses.
+- **Composite Primary Key:** (EmployeeID, CourseID, CompletionDate)
+- **Foreign Keys:**
+  - EmployeeID -> Employee(EmployeeID) ON DELETE CASCADE ON UPDATE CASCADE
+  - CourseID -> TrainingCourse(CourseID) ON DELETE CASCADE ON UPDATE CASCADE
 
-| שם שדה | טיפוס נתונים | מגבלות (Constraints) | תיאור בעברית | דוגמה |
+| Column Name | Data Type | Constraints | Description | Sample Value |
 | :--- | :--- | :--- | :--- | :--- |
-| `EmployeeID` | INT | NOT NULL, FK -> Employee | מזהה העובד שהשתתף | 1001 |
-| `CourseID` | INT | NOT NULL, FK -> TrainingCourse | מזהה הקורס שבוצע | 201 |
-| `CompletionDate` | DATE | NOT NULL, CHECK (CompletionDate <= CURRENT_DATE) | תאריך סיום ההדרכה | '2026-03-10' |
+| EmployeeID | INT | NOT NULL, PK, FK -> Employee | Employee who completed the training | 1 |
+| CourseID | INT | NOT NULL, PK, FK -> TrainingCourse | Training course completed | 201 |
+| CompletionDate | DATE | NOT NULL, PK, CHECK (CompletionDate <= CURRENT_DATE) | Official date of completion / certification | '2024-06-12' |
 
 ---
 
-### 4. ניתוח נרמול (3NF Justification)
+### 4. Third Normal Form (3NF) Justification
 
-המערכת מתוכננת בקפידה לעמידה בסטנדרט הצורה הנורמלית השלישית (3NF):
+The schema strictly satisfies all criteria for 1NF, 2NF, and 3NF:
 
-1. **עמידה ב-1NF (צורה נורמלית ראשונה):**
-   - כל שדה בטבלאות מכיל ערכים אטומיים בלבד (אין רשימות מרובות ערכים בשדה יחיד, כגון מחרוזות מופרדות בפסיקים).
-   - לכל טבלה מוגדר מפתח ראשי מפורש וחד-ערכי (Primary Key) המבטיח ייחודיות שורות.
-   - אין טורים החוזרים על עצמם (Repeating groups).
+1. **First Normal Form (1NF):**
+   - **Atomic Attributes:** Every column stores indivisible, single-valued entries (e.g., first and last names are stored separately; dates and times are kept in dedicated standard SQL types).
+   - **Defined Keys:** Every table has a clearly defined unique primary key (simple or composite).
+   - **No Repeating Groups:** Multi-valued facts (such as multiple shifts or multiple course completions) are decoupled into distinct tables (AttendanceRecord, Employee_Training) rather than comma-separated lists or array columns.
 
-2. **עמידה ב-2NF (צורה נורמלית שנייה):**
-   - הטבלאות נמצאות ב-1NF.
-   - בכל הטבלאות בעלות מפתח ראשי מורכב (`AttendanceRecord` ו-`Employee_Training`), כל תכונה שאינה מפתח תלויה במלוא המפתח הראשי ולא בחלק ממנו (Full Functional Dependency):
-     - ב-`AttendanceRecord`: שעות הכניסה והיציאה תלויות ספציפית ברשומת הנוכחות של העובד ביום המדובר.
-     - ב-`Employee_Training`: תאריך הסיום תלוי בשילוב המדויק של העובד, הקורס והמועד.
+2. **Second Normal Form (2NF):**
+   - The schema is in 1NF.
+   - For all composite-key tables (AttendanceRecord and Employee_Training), every non-key column is fully functionally dependent on the **entire** composite key:
+     - In AttendanceRecord, WorkDate, ClockInTime, and ClockOutTime depend on the specific shift (EmployeeID, RecordID).
+     - In Employee_Training, all attributes form the primary key (EmployeeID, CourseID, CompletionDate), precluding any partial key dependencies.
 
-3. **עמידה ב-3NF (צורה נורמלית שלישית):**
-   - הטבלאות נמצאות ב-2NF.
-   - אין תלויות טרנזיטיביות (Transitive Dependencies) בין תכונות שאינן מפתח. לדוגמה:
-     - תקציב המחלקה (`Budget`) שמור בטבלת `Department` בלבד, ולא נגרר לטבלת `Employee`, מה שמונע כפילות ואנומליות עדכון כאשר תקציב מחלקה משתנה.
-     - פרטי הקורס ומעביר הקורס (`ProviderName`) שמורים ב-`TrainingCourse` בלבד ולא בטבלת הקשר `Employee_Training`.
-     - חלוקת סוגי העובדים ממומשת באמצעות דפוס ירושה (Table-per-Type) כך ששדות ייחודיים לסגל אקדמי (כגון `ResearchField`) אינם מאוחסנים עם ערכי NULL מיותרים עבור סגל מנהלי, ולהפך.
+3. **Third Normal Form (3NF):**
+   - The schema is in 2NF.
+   - There are **no transitive dependencies** ( \rightarrow Y \rightarrow Z$) between non-prime attributes:
+     - Department budget depends solely on DepartmentID and is isolated in the Department table (not duplicated on Employee).
+     - Course provider depends solely on CourseID and is isolated in TrainingCourse.
+     - Subtype-specific fields (OfficeNumber, ManagementLevel, ResearchField, TenureStatus) are decoupled into Table-per-Type subtype tables, eliminating sparse NULL columns and transitive dependencies on Employee.
 
 ---
 
-### 5. אילוצי שלמות עסקיים (Integrity & Business Rules)
+### 5. Business Rules & Integrity Constraints
 
-1. **שלמות ישותית (Entity Integrity):**
-   - כל מפתח ראשי מוגדר כ-`NOT NULL` באופן מובנה ומונע כפילויות.
-2. **שלמות התייחסותית (Referential Integrity):**
-   - מחיקת עובד גוררת מחיקה של כלל רשומות הנוכחות שלו, רישומי ההשתלמויות שלו ורשומות ה-Subtype שלו (`ON DELETE CASCADE`), על מנת למנוע רשומות יתומות (Orphan Records).
-   - מחיקת מחלקה מוגבלת (`ON DELETE RESTRICT`) במידה ומשויכים אליה עובדים פעילים, כדי למנוע השארת עובדים ללא מחלקה ארגונית.
-3. **אילוצי תחום וערכים (Domain Constraints):**
-   - מספרי זהות חייבים להיות בדיוק בני 9 ספרות (`LENGTH(ID_Number) = 9`).
-   - משכורות ותקציבים מוגבלים לערכים חיוביים בלבד (`CHECK (Budget >= 0)`, `CHECK (BaseSalary >= 0)`).
-   - שעת יציאה חייבת להיות שווה או מאוחרת משעת הכניסה (`ClockOutTime >= ClockInTime`).
-   - תאריכים עתידיים נפסלים באופן קשיח עבור גיוס, דיווחי נוכחות וסיום קורסים (`<= CURRENT_DATE`).
-
+1. **Entity Integrity:**
+   - Every primary key is explicitly enforced as PRIMARY KEY, guaranteeing NOT NULL and UNIQUE properties across all tables.
+2. **Referential Integrity:**
+   - Deleting an Employee safely cascades (ON DELETE CASCADE) to their attendance records, training certificates, and subtype profiles (AdministrativeStaff, AcademicStaff), preventing orphaned records.
+   - Deleting a Department is restricted (ON DELETE RESTRICT) whenever active employees are assigned to it, preventing accidental organizational disconnects.
+3. **Domain Constraints:**
+   - National ID numbers must be exactly 9 characters long: CHECK (LENGTH(ID_Number) = 9).
+   - Salaries and budgets cannot be negative: CHECK (BaseSalary >= 0), CHECK (Budget >= 0).
+   - Departure time cannot precede arrival time: CHECK (ClockOutTime >= ClockInTime).
+   - Historical dates (hire date, work date, course completion) cannot occur in the future: CHECK (column <= CURRENT_DATE).
