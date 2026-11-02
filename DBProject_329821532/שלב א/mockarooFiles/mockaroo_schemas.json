@@ -1,7 +1,7 @@
-﻿{
-  "project": "College Manpower & HR Management System (JCT / מכון לב)",
+{
+  "project": "College Manpower & HR Management System (JCT)",
   "submitter_id": "329821532",
-  "version": "1.0",
+  "version": "2.0",
   "schemas": [
     {
       "schema_name": "Employee_Schema",
@@ -27,7 +27,7 @@
         {
           "name": "ID_Number",
           "type": "Regular Expression",
-          "value": "0[2-9][0-9]{7}",
+          "value": "32900[0-9]{4}",
           "formula": null
         },
         {
@@ -73,8 +73,7 @@
         {
           "name": "OfficeNumber",
           "type": "Template",
-          "type": "Custom List",
-          "values": ["Lev-Rm101", "Lev-Rm210", "Shalom-Rm305", "Tech-Rm402", "Academic-Rm112", "Lev-Rm204", "Tech-Rm130", "Shalom-Rm15"]
+          "template": "{{random('Lev','Shalom','Tech','Academic')}}-Rm{{random(101,450)}}"
         },
         {
           "name": "ManagementLevel",
@@ -98,18 +97,22 @@
           "name": "ResearchField",
           "type": "Custom List",
           "values": [
-            "Algorithms & Artificial Intelligence",
-            "Quantum Computing & Information",
-            "Electro-Optics, Lasers & Photonics",
-            "Biomedical Signal & Image Processing",
-            "Supply Chain & Operations Research",
-            "Genomics, Proteomics & Bioinformatics",
-            "Cloud Systems, Microservices & DevOps",
-            "Cybersecurity, Cryptography & Privacy",
-            "Computer Vision & Deep Learning",
-            "Applied Mathematics & Modeling",
-            "Embedded Systems & IoT Architecture",
-            "Nanotechnology & Advanced Materials"
+            "Algorithms and Artificial Intelligence",
+            "Quantum Computing and Information Theory",
+            "Electro-Optics, Lasers and Photonics",
+            "Biomedical Signal and Image Processing",
+            "Supply Chain and Operations Research",
+            "Genomics, Proteomics and Bioinformatics",
+            "Cloud Systems, Microservices and DevOps",
+            "Cybersecurity, Cryptography and Privacy",
+            "Computer Vision and Deep Learning",
+            "Applied Mathematics and Numerical Modeling",
+            "Embedded Systems and IoT Architecture",
+            "Nanotechnology and Advanced Materials",
+            "Renewable Energy and Smart Grid Systems",
+            "Natural Language Processing and Linguistics",
+            "Robotics and Autonomous Systems",
+            "VLSI Design and Microelectronics"
           ]
         },
         {
@@ -121,4 +124,3 @@
     }
   ]
 }
-

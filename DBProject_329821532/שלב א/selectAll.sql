@@ -1,6 +1,6 @@
 -- ============================================================================
--- Project: College Manpower & HR Management System (שלב א)
--- Institution: Jerusalem College of Technology (JCT / מכון לב)
+-- Project: College Manpower & HR Management System
+-- Institution: Jerusalem College of Technology (JCT)
 -- Submitter ID: 329821532
 -- File: selectAll.sql
 -- Description: Queries to display sample data and verify total row counts
@@ -9,23 +9,24 @@
 -- ----------------------------------------------------------------------------
 -- Part 1: Row count verification for all 7 tables
 -- ----------------------------------------------------------------------------
-SELECT 'Department' AS Table_Name, COUNT(*) AS Total_Rows FROM Department
+SELECT 'Department'          AS Table_Name, COUNT(*) AS Total_Rows FROM Department
 UNION ALL
-SELECT 'TrainingCourse', COUNT(*) FROM TrainingCourse
+SELECT 'TrainingCourse',       COUNT(*) FROM TrainingCourse
 UNION ALL
-SELECT 'Employee', COUNT(*) FROM Employee
+SELECT 'Employee',             COUNT(*) FROM Employee
 UNION ALL
-SELECT 'AdministrativeStaff', COUNT(*) FROM AdministrativeStaff
+SELECT 'AdministrativeStaff',  COUNT(*) FROM AdministrativeStaff
 UNION ALL
-SELECT 'AcademicStaff', COUNT(*) FROM AcademicStaff
+SELECT 'AcademicStaff',        COUNT(*) FROM AcademicStaff
 UNION ALL
-SELECT 'AttendanceRecord', COUNT(*) FROM AttendanceRecord
+SELECT 'AttendanceRecord',     COUNT(*) FROM AttendanceRecord
 UNION ALL
-SELECT 'Employee_Training', COUNT(*) FROM Employee_Training;
+SELECT 'Employee_Training',    COUNT(*) FROM Employee_Training;
 
 -- ----------------------------------------------------------------------------
--- Part 2: Select all records from baseline tables
+-- Part 2: Select records from each table (sample 50 rows where large)
 -- ----------------------------------------------------------------------------
+
 -- 1. Departments
 SELECT * FROM Department ORDER BY DepartmentID;
 
@@ -35,14 +36,14 @@ SELECT * FROM TrainingCourse ORDER BY CourseID;
 -- 3. Employees (sample first 50 rows)
 SELECT * FROM Employee ORDER BY EmployeeID LIMIT 50;
 
--- 4. Administrative Staff
+-- 4. Administrative Staff (joined with Employee for context)
 SELECT a.EmployeeID, e.FirstName, e.LastName, a.OfficeNumber, a.ManagementLevel
 FROM AdministrativeStaff a
 JOIN Employee e ON a.EmployeeID = e.EmployeeID
 ORDER BY a.EmployeeID
 LIMIT 50;
 
--- 5. Academic Staff
+-- 5. Academic Staff (joined with Employee for context)
 SELECT ac.EmployeeID, e.FirstName, e.LastName, ac.ResearchField, ac.TenureStatus
 FROM AcademicStaff ac
 JOIN Employee e ON ac.EmployeeID = e.EmployeeID

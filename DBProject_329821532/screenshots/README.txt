@@ -1,1 +1,0 @@
-Place your project screenshots here (erd_diagram.png, dsd_diagram.png, python_script.png, python_execution.png, mockaroo_employee_schema.png, mockaroo_export.png, manual_import_sql.png, db_backup_process.png, db_restore_process.png)

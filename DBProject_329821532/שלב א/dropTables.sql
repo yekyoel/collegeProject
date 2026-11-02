@@ -1,6 +1,6 @@
 -- ============================================================================
--- Project: College Manpower & HR Management System (שלב א)
--- Institution: Jerusalem College of Technology (JCT / מכון לב)
+-- Project: College Manpower & HR Management System
+-- Institution: Jerusalem College of Technology (JCT)
 -- Submitter ID: 329821532
 -- File: dropTables.sql
 -- Description: Drop tables script strictly ordered by reverse dependency

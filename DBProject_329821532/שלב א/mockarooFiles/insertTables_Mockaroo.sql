@@ -4,6 +4,7 @@
 -- Submitter ID: 329821532
 -- File: insertTables_Mockaroo.sql
 -- Description: 500 records for Employee, AdministrativeStaff (250), AcademicStaff (250)
+-- Method: Method 2 (Mockaroo-Generated Data)
 -- ============================================================================
 
 -- ----------------------------------------------------------------------------

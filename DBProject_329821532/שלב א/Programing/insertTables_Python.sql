@@ -1,16 +1,15 @@
 -- ============================================================================
--- Project: College Manpower & HR Management System (שלב א)
--- Institution: Jerusalem College of Technology (JCT / מכון לב)
+-- Project: College Manpower & HR Management System
+-- Institution: Jerusalem College of Technology (JCT)
 -- Submitter ID: 329821532
 -- File: insertTables_Python.sql
 -- Description: 20,000 AttendanceRecord rows + 20,000 Employee_Training rows
--- Method: Method 1 (Python / Scripted Generation using Faker principles)
+-- Method: Method 1 (Python Script using Faker library)
 -- ============================================================================
 
 -- ----------------------------------------------------------------------------
 -- 1. AttendanceRecord: 20,000 rows (Weak Entity of Employee)
--- ----------------------------------------------------------------------------
-INSERT INTO AttendanceRecord (EmployeeID, RecordID, WorkDate, ClockInTime, ClockOutTime) VALUES
+-- ----------------------------------------------------------------------------INSERT INTO AttendanceRecord (EmployeeID, RecordID, WorkDate, ClockInTime, ClockOutTime) VALUES
 (1, 1, '2025-01-05', '09:15:04', '16:50:06'),
 (1, 2, '2025-01-06', '07:53:25', '17:16:00'),
 (1, 3, '2025-01-08', '09:04:58', '17:56:54'),
