@@ -9,7 +9,8 @@
 
 -- ----------------------------------------------------------------------------
 -- 1. AttendanceRecord: 20,000 rows (Weak Entity of Employee)
--- ----------------------------------------------------------------------------INSERT INTO AttendanceRecord (EmployeeID, RecordID, WorkDate, ClockInTime, ClockOutTime) VALUES
+-- ----------------------------------------------------------------------------
+INSERT INTO AttendanceRecord (EmployeeID, RecordID, WorkDate, ClockInTime, ClockOutTime) VALUES
 (1, 1, '2025-01-05', '09:15:04', '16:50:06'),
 (1, 2, '2025-01-06', '07:53:25', '17:16:00'),
 (1, 3, '2025-01-08', '09:04:58', '17:56:54'),

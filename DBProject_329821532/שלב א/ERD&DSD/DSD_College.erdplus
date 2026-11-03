@@ -1,0 +1,568 @@
+{
+  "diagramType": 2,
+  "data": {
+    "nodes": [
+      {
+        "id": "0138ce84-0329-4c54-95f6-4c878df68837",
+        "type": "Table",
+        "position": {
+          "x": 1234.3157529486714,
+          "y": 612.7910285253079
+        },
+        "data": {
+          "label": "DEPARTMENT",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "4500ec58-bf1f-4861-bbac-f7460444b94e",
+              "name": "DepartmentID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "64945fab-5acb-481e-9a37-b3215f83005d",
+              "name": "DepartmentName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "99f1711d-5f8b-4860-bd71-6a2b70e02088",
+              "name": "Budget",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 101
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "type": "Table",
+        "position": {
+          "x": 1652.353372599502,
+          "y": 199.8279286096909
+        },
+        "data": {
+          "label": "EMPLOYEE",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "56484578-b717-4c9a-966d-f3a6cb8da274",
+              "name": "EmployeeID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "6389ad5e-0871-4d10-ba84-de1d155ce2a8",
+              "name": "FirstName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "2d6d6e35-0b4e-45dd-a016-c2bbc6274e50",
+              "name": "LastName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "610ec29c-8a0c-453b-aaac-88e8e3af417e",
+              "name": "ID_Number",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "6a942479-7e19-4885-bcbd-70ab5a5252b4",
+              "name": "HireDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "c69748af-806f-4200-80e1-d758a210ca7c",
+              "name": "BaseSalary",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "8becbabe-a6d2-4661-8452-fb08b15280f6",
+              "name": "EmployeeType",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "a280da8e-6fe1-4dfc-b162-28ed5d61b2f2",
+              "name": "fk_DEPARTMENT",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "254a8174-c7bf-4c5f-94c3-4d6119184a52",
+                "sourceTableId": "0138ce84-0329-4c54-95f6-4c878df68837",
+                "columns": [
+                  {
+                    "id": "fk_4500ec58-bf1f-4861-bbac-f7460444b94e",
+                    "name": "DepartmentID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 227
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "c2be3609-71ca-4860-8f2f-9a1437d80c05",
+        "type": "Table",
+        "position": {
+          "x": 2489.657952258711,
+          "y": 411.9120640076095
+        },
+        "data": {
+          "label": "TRAININGCOURSE",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "00ae7b60-7ac6-4d6d-8d46-f8c0a9ffe669",
+              "name": "CourseID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "f595364f-9954-49e9-8dd6-65b17aae385b",
+              "name": "CourseName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "063440d3-1703-4866-8153-2ed3aaef1f74",
+              "name": "ProviderName",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 101
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "dad4f29e-20ae-4926-b74e-e8cb54967d1d",
+        "type": "Table",
+        "position": {
+          "x": 1130.3415758602994,
+          "y": 360.72938557360965
+        },
+        "data": {
+          "label": "ADMINISTRATIVESTAFF",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "94d9fcad-2dd3-4a7e-8bda-7eac5fafbcbc",
+              "name": "OfficeNumber",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "2d24b96d-2e17-470f-9844-bef530ad3b33",
+              "name": "ManagementLevel",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "d61f7d86-f1ab-4002-9cda-6fbc9cd22ed0",
+              "name": "fk_EMPLOYEE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "3ef88ffa-9737-46dd-800f-15fd02c6f7eb",
+                "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+                "columns": [
+                  {
+                    "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                    "name": "EmployeeID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 102
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "587379c2-e059-4182-b5d3-6b9f65f2b429",
+        "type": "Table",
+        "position": {
+          "x": 1128.370943602688,
+          "y": 199.20412356753081
+        },
+        "data": {
+          "label": "ACADEMICSTAFF",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "4a387bf3-400a-4e46-acfd-4521a66a140c",
+              "name": "ResearchField",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "83922581-7397-4bcc-b9ad-04ad5fefa719",
+              "name": "TenureStatus",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "b1fefafc-233f-4edd-8466-8031c30e8c60",
+              "name": "fk_EMPLOYEE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "69ef15d9-dbd9-4402-8a2b-384b8eedda7f",
+                "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+                "columns": [
+                  {
+                    "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                    "name": "EmployeeID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 102
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "266d8943-0c46-49d9-b6d9-40b9f6c095c5",
+        "type": "Table",
+        "position": {
+          "x": 2018.1883223178252,
+          "y": 598.6425189027631
+        },
+        "data": {
+          "label": "ATTENDANCERECORD",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "ce9b234f-38a8-4bff-bdd0-aae79789ec3c",
+              "name": "RecordID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "a420a6af-7b6b-48a5-90af-87254c18fa0d",
+              "name": "WorkDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "462865aa-0cd7-4c06-8ee3-4eb0a4092de4",
+              "name": "ClockInTime",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "5c7625eb-507b-43f3-a1a9-1c92858e8e2f",
+              "name": "ClockOutTime",
+              "type": "INT",
+              "isPrimaryKey": false,
+              "isOptional": true
+            },
+            {
+              "id": "b570c38a-b268-4960-be5d-6c881c427e1b",
+              "name": "fk_EMPLOYEE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "3834e3cb-677a-4a56-8a08-aeb65be26cab",
+                "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+                "columns": [
+                  {
+                    "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                    "name": "EmployeeID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false,
+          "isWeak": true
+        },
+        "measured": {
+          "width": 240,
+          "height": 152
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "cd649a85-0676-40eb-9989-ca0fe41eeeb1",
+        "type": "Table",
+        "position": {
+          "x": 2175.619660547142,
+          "y": 173.58069166112065
+        },
+        "data": {
+          "label": "EMPLOYEE_TRAINING",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "2f450c1c-7b16-46b5-bb7b-06a0b57a568d",
+              "name": "CompletionDate",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "a8e5e82f-4453-42dd-b177-f06fdfe29ed5",
+              "name": "fk_EMPLOYEE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "7104f611-6d13-428c-bb10-d066bcba9883",
+                "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+                "columns": [
+                  {
+                    "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                    "name": "EmployeeID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "92d1b15a-d119-4bef-83a1-0355091538a5",
+              "name": "fk_TRAININGCOURSE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "fc9f7db5-7393-4ddf-9a89-3b735ff50b9b",
+                "sourceTableId": "c2be3609-71ca-4860-8f2f-9a1437d80c05",
+                "columns": [
+                  {
+                    "id": "fk_00ae7b60-7ac6-4d6d-8d46-f8c0a9ffe669",
+                    "name": "CourseID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false,
+          "isWeak": true
+        },
+        "measured": {
+          "width": 240,
+          "height": 103
+        },
+        "selected": false,
+        "dragging": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "0138ce84-0329-4c54-95f6-4c878df68837->f1795c3d-a54c-44f7-b29a-ab6626eb23f3_254a8174-c7bf-4c5f-94c3-4d6119184a52",
+        "type": "Relational",
+        "source": "0138ce84-0329-4c54-95f6-4c878df68837",
+        "targetHandle": "foreign-key-handle-254a8174-c7bf-4c5f-94c3-4d6119184a52",
+        "target": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "254a8174-c7bf-4c5f-94c3-4d6119184a52",
+            "sourceTableId": "0138ce84-0329-4c54-95f6-4c878df68837",
+            "columns": [
+              {
+                "id": "fk_4500ec58-bf1f-4861-bbac-f7460444b94e",
+                "name": "DepartmentID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3->dad4f29e-20ae-4926-b74e-e8cb54967d1d_3ef88ffa-9737-46dd-800f-15fd02c6f7eb",
+        "type": "Relational",
+        "source": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "targetHandle": "foreign-key-handle-3ef88ffa-9737-46dd-800f-15fd02c6f7eb",
+        "target": "dad4f29e-20ae-4926-b74e-e8cb54967d1d",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "3ef88ffa-9737-46dd-800f-15fd02c6f7eb",
+            "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+            "columns": [
+              {
+                "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                "name": "EmployeeID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3->587379c2-e059-4182-b5d3-6b9f65f2b429_69ef15d9-dbd9-4402-8a2b-384b8eedda7f",
+        "type": "Relational",
+        "source": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "targetHandle": "foreign-key-handle-69ef15d9-dbd9-4402-8a2b-384b8eedda7f",
+        "target": "587379c2-e059-4182-b5d3-6b9f65f2b429",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "69ef15d9-dbd9-4402-8a2b-384b8eedda7f",
+            "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+            "columns": [
+              {
+                "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                "name": "EmployeeID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3->266d8943-0c46-49d9-b6d9-40b9f6c095c5_3834e3cb-677a-4a56-8a08-aeb65be26cab",
+        "type": "Relational",
+        "source": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "targetHandle": "foreign-key-handle-3834e3cb-677a-4a56-8a08-aeb65be26cab",
+        "target": "266d8943-0c46-49d9-b6d9-40b9f6c095c5",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "3834e3cb-677a-4a56-8a08-aeb65be26cab",
+            "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+            "columns": [
+              {
+                "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                "name": "EmployeeID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3->cd649a85-0676-40eb-9989-ca0fe41eeeb1_7104f611-6d13-428c-bb10-d066bcba9883",
+        "type": "Relational",
+        "source": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+        "targetHandle": "foreign-key-handle-7104f611-6d13-428c-bb10-d066bcba9883",
+        "target": "cd649a85-0676-40eb-9989-ca0fe41eeeb1",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "7104f611-6d13-428c-bb10-d066bcba9883",
+            "sourceTableId": "f1795c3d-a54c-44f7-b29a-ab6626eb23f3",
+            "columns": [
+              {
+                "id": "fk_56484578-b717-4c9a-966d-f3a6cb8da274",
+                "name": "EmployeeID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "c2be3609-71ca-4860-8f2f-9a1437d80c05->cd649a85-0676-40eb-9989-ca0fe41eeeb1_fc9f7db5-7393-4ddf-9a89-3b735ff50b9b",
+        "type": "Relational",
+        "source": "c2be3609-71ca-4860-8f2f-9a1437d80c05",
+        "targetHandle": "foreign-key-handle-fc9f7db5-7393-4ddf-9a89-3b735ff50b9b",
+        "target": "cd649a85-0676-40eb-9989-ca0fe41eeeb1",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "fc9f7db5-7393-4ddf-9a89-3b735ff50b9b",
+            "sourceTableId": "c2be3609-71ca-4860-8f2f-9a1437d80c05",
+            "columns": [
+              {
+                "id": "fk_00ae7b60-7ac6-4d6d-8d46-f8c0a9ffe669",
+                "name": "CourseID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "viewport": {
+      "x": 95.63745303606993,
+      "y": 114.09903051017949,
+      "zoom": 0.5354210742442711
+    }
+  },
+  "name": "DSD_College",
+  "folder": {
+    "name": "Diagrams",
+    "folderType": 1,
+    "depth": 0,
+    "id": 488405
+  },
+  "id": 717084,
+  "updatedAtTimestamp": 1793729030
+}
