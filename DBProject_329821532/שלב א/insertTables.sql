@@ -1088,7 +1088,7 @@ VALUES
 INSERT INTO Department (DepartmentID, DepartmentName, Budget)
 SELECT n, 'Simulated Department ' || n,
        (1000000 + n * 100)::numeric(12,2)
-FROM generate_series(113, 582) AS t(n);
+FROM generate_series(113, 600) AS t(n);
 
 -- 482 additional training courses: 18 + 482 = 500
 INSERT INTO TrainingCourse (CourseID, CourseName, ProviderName)
